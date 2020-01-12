@@ -1,0 +1,33 @@
+<%=   flash[:success]  %>
+
+<div class="body">
+	<div class="container">
+
+	    <div class="row">
+	    	<div class="top-message col-md-offset-3 col-md-6">
+
+
+			<h1>welcome to <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Bookers !!</h1>
+				<p>
+					In <strong><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Bookers,</strong>
+						<br>you can share and exchange your opinions , inpressions , and emotions
+						<br> about various books!
+				</p>
+				<p>
+					<a href="/users/sign_in">
+						<button type="button" class="btn btn-info btn-lg btn-block">Log in</button>
+					</a>
+				</p>
+				<p>
+<!-- 					<a href="/users/sign_up">
+						<button type="button" class="btn btn-success btn-lg btn-block">Sign Up</button>
+					</a> -->
+					<%= link_to "Sign up", new_user_registration_path, class:"btn btn-success" %>
+				</p>
+		</div>
+	</div>
+</div>
+
+
+
+
