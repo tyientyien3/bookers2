@@ -1,0 +1,37 @@
+<h2>フォローしているリスト</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>されてる</th>
+      <th>してる</th>
+      <th>ユーザー詳細</th>
+    </tr>
+  </thead>
+
+
+  <% @user.followings.each do |user| %>
+  <tbody>
+    <tr>
+      <td> <%= user.name %> </td>
+      <td><%= user.followers.count %>人</td>
+      <td><%= user.followings.count %>人</td>
+      <td><%= link_to 'show', user_path(user) %></td>
+      <td>
+        <% if current_user.following_relationships.find_by(following_id: @user.id) %>
+        <%= form_for(current_user.following_relationships.find_by(following_id: @user.id), method: :delete) do |f| %>
+        <%= f.submit "Unfollow", class: "btn btn-large btn-primary follow-btn" %>
+        <% end %>
+        <% else %>
+        <%= form_for(current_user.following_relationships.build(following_id: @user.id)) do |f| %>
+        <div><%= f.hidden_field :following_id %></div>
+        <%= f.submit "Follow", class: "btn btn-large btn-primary follow-btn" %>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+  </tbody>
+  <% end %>
+</table>

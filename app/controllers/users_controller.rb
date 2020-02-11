@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # binding.pry
     @books = @user.books
     @book = Book.new
   end
@@ -27,6 +28,19 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # フォロー機能
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings
+    render "show_follow"
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render "show_follower"
   end
 
   private

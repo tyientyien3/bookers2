@@ -23,6 +23,36 @@
               <h5 class="profile-introduction"><%= @user.introduction %></h5>
             </th>
           </tr>
+          <%# フォロワー数 %>
+          <tr>
+            <th>フォロー数</th>
+            <th>
+              <a href="<%= followers_user_path(@user) %>">
+                <%= @user.followings.count %>
+              </a>
+            </th>
+          </tr>
+          <tr>
+            <th>フォロワー数</th>
+            <th>
+              <a href="<%= followers_user_path(@user) %>">
+                <%= @user.followers.count %>
+              </a>
+            </th>
+          </tr>
+          <%# フォローボタン %>
+          <tr>
+            <% if current_user.following_relationships.find_by(following_id: @user.id) %>
+            <%= form_for(current_user.following_relationships.find_by(following_id: @user.id), method: :delete) do |f| %>
+            <%= f.submit "Unfollow", class: "btn btn-large btn-primary follow-btn" %>
+            <% end %>
+            <% else %>
+            <%= form_for(current_user.following_relationships.build(following_id: @user.id)) do |f| %>
+            <div><%= f.hidden_field :following_id %></div>
+            <%= f.submit "Follow", class: "btn btn-large btn-primary follow-btn" %>
+            <% end %>
+            <% end %>
+          </tr>
         </thead>
       </table>
       <div>
@@ -97,4 +127,5 @@
       </table>
     </div>
   </div>
+</div>
 </div>
