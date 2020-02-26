@@ -73,3 +73,13 @@ gem "dotenv-rails"
 group :production do
   gem "mysql2"
 end
+group :test do
+  gem "capybara", ">= 2.15"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+end
+
+gem "pry-byebug"
